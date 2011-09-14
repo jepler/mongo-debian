@@ -704,7 +704,8 @@ if nix:
     # env.Append( " -Wconversion" ) TODO: this doesn't really work yet
     if linux:
         env.Append( CPPFLAGS=" -Werror " )
-        if not has_option('clang'): 
+        env.Append( CPPFLAGS=" -Wno-error=unused-but-set-variable -Wno-error=unused-but-set-parameter " ) # ignore new gcc 4.6 warnings
+        if not has_option('clang'):
             env.Append( CPPFLAGS=" -fno-builtin-memcmp " ) # glibc's memcmp is faster than gcc's
 
     env.Append( CPPDEFINES="_FILE_OFFSET_BITS=64" )
